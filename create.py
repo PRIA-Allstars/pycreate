@@ -54,7 +54,7 @@ from threading import *
 
 # The Create's baudrate and timeout:
 baudrate = 57600
-timeout = 0.5
+timeout = 10000000
 
 # some module-level definitions for the robot commands
 START = chr(128)    # already converted to bytes...
@@ -355,14 +355,14 @@ class Create:
             else:
                 # for Mac/Linux - use whole port name
                 # print 'In Mac/Linux mode...'
-                self.ser = serial.Serial(PORT, baudrate=57600, timeout=0.5)
+                self.ser = serial.Serial(PORT, baudrate=57600, timeout=timeout)
         # otherwise, we try to open the numeric serial port...
                 if (sim_mode):
                     self.init_sim_mode()
         else:
             # print 'In Windows mode...'
             try:
-                self.ser = serial.Serial(PORT-1, baudrate=57600, timeout=0.5)
+                self.ser = serial.Serial(PORT-1, baudrate=57600, timeout=timeout)
                 if (sim_mode):
                     self.init_sim_mode()
             except serial.SerialException:
